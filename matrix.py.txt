@@ -1,0 +1,81 @@
+# Matrix with sum of elements of rows , columns and diagonals are same
+
+
+def locate_box(i, j, N):
+    global last_num
+    global a
+    last_num += 1
+
+    temp_i = i
+    temp_j = j
+    if (i+1) > (N-1) or (j+1) > (N-1):
+
+        if (j+1) > (N-1) and (i+1) > (N-1):
+            j -= 1
+        elif (j+1) > (N-1):
+
+            i += 1
+            j = 0
+
+        else:
+
+            i = 0
+            j += 1
+
+    else:
+
+        i += 1
+        j += 1
+    if a[i][j] != 0:
+        i = temp_i
+        j = temp_j-1
+    a[i][j] = last_num
+    for aa in a:
+        print(aa)
+
+    print("\n")
+    return i, j
+
+
+N = int(input("Enter the dimension of array: "))
+a = []
+b = []
+for i in range(N):
+    for ii in range(N):
+
+        b.append(0)
+    a.append(b)
+    b = []
+
+if N % 2 == 0:
+    start = int(N/2)-1
+else:
+    start = int((N+1)/2)-1
+
+
+for aa in a:
+    print(aa)
+print("\n")
+# max value of i and j is 3
+
+# Entry point
+
+i = start
+j = N-1
+last_num = 1
+
+a[i][j] = last_num
+
+for aa in a:
+    print(aa)
+print("\n")
+run = 1
+while run == 1:
+    i, j = locate_box(i, j, N)
+    for aa in a:
+        if 0 not in aa:
+            run += 1
+
+    if run > N:
+        break
+    run = 1
